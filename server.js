@@ -2,8 +2,8 @@ import { ApolloServer, gql } from "apollo-server";
 
 const typeDefs = gql`
   type User {
-    id: ID
-    username: String
+    id: ID!
+    username: String!
   }
   type Tweet {
     id: ID!
