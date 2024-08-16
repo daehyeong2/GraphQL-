@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloError, ApolloServer, gql } from "apollo-server";
 
 let tweets = [
   {
@@ -63,6 +63,10 @@ const resolvers = {
   },
   Mutation: {
     postTweet(_, { text, userId }) {
+      if (users.findIndex((user) => user.id === userId) === -1)
+        throw new ApolloError("User not found", "USER_NOT_FOUND", {
+          statusCode: 400,
+        });
       const newTweet = {
         id: tweets.length + 1,
         text,
