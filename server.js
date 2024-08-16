@@ -31,8 +31,14 @@ const typeDefs = gql`
     id: ID!
     firstName: String!
     lastName: String!
+    """
+    fullName은 firstName + lastName의 string입니다.
+    """
     fullName: String!
   }
+  """
+  Tweet 오브젝트는 Tweet의 정보를 대표합니다.
+  """
   type Tweet {
     id: ID!
     text: String!
@@ -45,6 +51,9 @@ const typeDefs = gql`
   }
   type Mutation {
     postTweet(text: String!, userId: ID!): Tweet!
+    """
+    Tweet을 찾는다면 삭제하고, 찾지 못한다면 false를 리턴합니다.
+    """
     deleteTweet(id: ID!): Boolean!
   }
 `;
